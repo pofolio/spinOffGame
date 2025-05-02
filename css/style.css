@@ -113,6 +113,72 @@ body {
     border-bottom: 2px solid var(--primary-color);
 }
 
+.tab-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+
+.welcome-message {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+}
+
+.welcome-message h2 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.welcome-message p {
+    color: var(--text-color);
+    font-size: 0.8rem;
+}
+
+.about-content {
+    text-align: center;
+    padding: 30px;
+}
+
+.about-content h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.about-content p {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+.play-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.play-button:hover {
+    transform: scale(1.05);
+    background: var(--accent-color);
+}
+
 @media (max-width: 600px) {
     .game-console {
         width: 95%;

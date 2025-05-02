@@ -1,0 +1,433 @@
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --background-color: #2d3436;
+    --text-color: #f5f6fa;
+    --accent-color: #fdcb6e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.game-container {
+    background: #1e272e;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 4px solid var(--accent-color);
+    max-width: 600px;
+    width: 100%;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.game-header h1 {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+.name-input, .team-leader-selection {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+h2 {
+    color: var(--accent-color);
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+}
+
+input:focus {
+    outline: 2px solid var(--accent-color);
+}
+
+button {
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-size: 0.7rem;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.name-list, .leader-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.name-tag {
+    background: var(--secondary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.name-tag:hover {
+    transform: scale(1.05);
+}
+
+.name-tag.pressing {
+    transform: scale(0.95);
+    opacity: 0.8;
+    background: var(--primary-color);
+}
+
+.name-tag.leader {
+    background: var(--primary-color);
+    cursor: default;
+}
+
+.name-tag button {
+    background: none;
+    padding: 0;
+    font-size: 0.8rem;
+}
+
+.result-section {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.team {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid var(--accent-color);
+    animation: teamAppear 0.5s ease-out;
+}
+
+.team-leader {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.team-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.team-member {
+    background: var(--secondary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.game-instructions {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.game-instructions p {
+    font-size: 0.7rem;
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+.leader-selection {
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    display: none;
+}
+
+.leader-selection.active {
+    display: block;
+}
+
+.leader-candidates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.leader-candidate {
+    background: var(--secondary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.leader-candidate:hover {
+    transform: scale(1.05);
+    background: var(--accent-color);
+}
+
+.leader-candidate.selected {
+    background: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.instruction {
+    color: var(--accent-color);
+    font-size: 0.7rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.leader-list {
+    min-height: 50px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    border: 2px solid var(--accent-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.leader-list.drag-over {
+    background: rgba(255, 255, 255, 0.1);
+    border-style: solid;
+}
+
+/* 이름 선택 옵션 팝업 */
+.name-options-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--accent-color);
+    text-align: center;
+    min-width: 250px;
+}
+
+.popup-content h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.options button:hover {
+    transform: scale(1.05);
+}
+
+#select-leader {
+    background: var(--primary-color);
+    color: var(--text-color);
+}
+
+#remove-name {
+    background: #ff4444;
+    color: var(--text-color);
+}
+
+#cancel-options {
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        padding: 15px;
+    }
+    
+    .game-header h1 {
+        font-size: 1.2rem;
+    }
+    
+    input, button {
+        font-size: 0.6rem;
+    }
+    
+    .name-tag, .team-member {
+        font-size: 0.6rem;
+    }
+}
+
+/* 팀 배정 애니메이션 */
+@keyframes teamAssigning {
+    0% {
+        transform: scale(1);
+        background: var(--primary-color);
+    }
+    25% {
+        transform: scale(1.1);
+        background: var(--accent-color);
+    }
+    50% {
+        transform: scale(1);
+        background: var(--secondary-color);
+    }
+    75% {
+        transform: scale(1.1);
+        background: var(--accent-color);
+    }
+    100% {
+        transform: scale(1);
+        background: var(--primary-color);
+    }
+}
+
+.assigning {
+    animation: teamAssigning 0.5s infinite;
+    pointer-events: none;
+}
+
+/* 팀 배정 결과 애니메이션 */
+@keyframes teamAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.team {
+    animation: teamAppear 0.5s ease-out;
+}
+
+/* 팀 배정 인디케이터 */
+.team-assign-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.indicator-container {
+    background: var(--background-color);
+    padding: 30px 50px;
+    border-radius: 15px;
+    border: 3px solid var(--accent-color);
+    text-align: center;
+    min-width: 300px;
+}
+
+.indicator-text {
+    color: var(--accent-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* 폭죽 효과 캔버스 */
+#fireworks-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+} 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 배정 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <h1>팀 배정 게임</h1>
+        </header>
+
+        <div class="input-section">
+            <div class="name-input">
+                <h2>참가자 이름 입력</h2>
+                <div class="input-group">
+                    <input type="text" id="name-input" placeholder="이름을 입력하세요">
+                    <button id="add-name">추가</button>
+                </div>
+                <div class="name-list" id="name-list">
+                    <!-- 이름 목록이 여기에 추가됩니다 -->
+                </div>
+            </div>
+
+            <div class="team-leader-selection">
+                <h2>파티장 선택</h2>
+                <p class="instruction">파티장으로 지정할 사람을 클릭하세요</p>
+                <div class="leader-list" id="leader-list">
+                    <!-- 선택된 파티장 목록이 여기에 추가됩니다 -->
+                </div>
+            </div>
+        </div>
+
+        <div class="result-section" id="result-section" style="display: none;">
+            <h2>팀 배정 결과</h2>
+            <div class="team-list" id="team-list">
+                <!-- 팀 배정 결과가 여기에 표시됩니다 -->
+            </div>
+        </div>
+
+        <div class="game-controls">
+            <button id="assign-teams">팀 배정</button>
+            <button id="reset-btn">다시 시작</button>
+        </div>
+
+        <div class="game-instructions">
+            <h2>게임 방법</h2>
+            <p>1. 참가자들의 이름을 입력하세요.</p>
+            <p>2. 파티장으로 지정할 사람을 클릭하세요.</p>
+            <p>3. "팀 배정" 버튼을 눌러 나머지 참가자들을 팀에 배정하세요.</p>
+        </div>
+    </div>
+
+    <!-- 이름 선택 옵션 팝업 -->
+    <div class="name-options-popup" id="name-options-popup" style="display: none;">
+        <div class="popup-content">
+            <h3 id="selected-name"></h3>
+            <div class="options">
+                <button id="select-leader">파티장으로 선택</button>
+                <button id="remove-name">이름 삭제</button>
+                <button id="cancel-options">취소</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 팀 배정 인디케이터 팝업 -->
+    <div class="team-assign-indicator" id="team-assign-indicator" style="display: none;">
+        <div class="indicator-container">
+            <div class="indicator-text" id="indicator-text"></div>
+        </div>
+    </div>
+
+    <!-- 폭죽 효과 캔버스 -->
+    <canvas id="fireworks-canvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html> 

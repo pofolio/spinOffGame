@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-button');
-    const gameContainer = document.querySelector('.game-container');
+    const tabContents = document.querySelectorAll('.tab-content');
     
     // 탭 전환 기능
     tabButtons.forEach(button => {
@@ -16,25 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     function switchTab(tabName) {
-        const gameList = document.querySelector('.game-list');
+        // 모든 탭 컨텐츠 숨김
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+        });
         
-        switch(tabName) {
-            case 'home':
-                gameList.style.display = 'grid';
-                break;
-            case 'games':
-                gameList.style.display = 'grid';
-                break;
-            case 'about':
-                gameList.style.display = 'none';
-                gameContainer.innerHTML = `
-                    <div class="about-content">
-                        <h2>레트로 게임 월드</h2>
-                        <p>여러가지 재미있는 게임들을 즐겨보세요!</p>
-                        <p>곧 새로운 게임들이 추가될 예정입니다.</p>
-                    </div>
-                `;
-                break;
+        // 선택된 탭 컨텐츠 표시
+        const selectedContent = document.getElementById(`${tabName}-content`);
+        if (selectedContent) {
+            selectedContent.classList.add('active');
         }
     }
     
