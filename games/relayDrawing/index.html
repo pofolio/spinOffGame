@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>릴레이 그리기</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>릴레이 그리기</h1>
+            <a href="../../index.html" class="home-button">🏠</a>
+        </div>
+
+        <div class="game-content">
+            <div class="game-description">
+                <h2>게임 설명</h2>
+                <div class="description-content">
+                    <p>주어진 단어를 3명이 릴레이로 그리는 게임입니다.</p>
+                    <div class="rule-steps">
+                        <p>1. 각 사람은 7초 동안 그림을 그립니다.</p>
+                        <p>2. 3명이 순서대로 그린 후 사회자가 맞추면 1점을 획득합니다.</p>
+                        <p>3. 사회자가 맞추지 못하면 점수는 없습니다.</p>
+                    </div>
+                    <div class="rewards">
+                        <p>승리 팀 개인: 3점</p>
+                        <p>패배 팀 개인: 1점</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timer-settings" id="timer-settings">
+                <h2>타이머 설정</h2>
+                <div class="timer-controls">
+                    <button id="decrease-time" class="timer-button">-</button>
+                    <div class="timer-display">7초</div>
+                    <button id="increase-time" class="timer-button">+</button>
+                </div>
+            </div>
+
+            <div class="word-indicator">
+                <div class="indicator-container">
+                    <div class="indicator-display">
+                        <span id="current-word"></span>
+                    </div>
+                </div>
+                <button id="start-game" class="game-button">게임 시작</button>
+            </div>
+
+            <div class="word-display" style="display: none;">
+                <h2>단어: <span id="word"></span></h2>
+                <div class="timer-section">
+                    <div class="countdown-timer">7</div>
+                    <button id="start-timer" class="game-button">시작</button>
+                </div>
+                <div class="player-info">
+                    <p>현재 플레이어: <span id="current-player">1</span>/3</p>
+                </div>
+                <button id="next-player" class="game-button">다음 플레이어</button>
+                <button id="restart-game" class="game-button">다시하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
