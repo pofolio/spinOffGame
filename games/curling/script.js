@@ -1,6 +1,6 @@
 class Timer {
     constructor() {
-        this.timeLeft = 3; // 5분 = 300초
+        this.timeLeft = 300; // 5분 = 300초
         this.timerId = null;
         this.isRunning = false;
         this.isAlarmPlaying = false;
