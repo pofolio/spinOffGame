@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>컬링 게임</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header class="game-header">
+            <a href="../../index.html" class="home-button">🏠</a>
+            <h1>컬링 게임</h1>
+        </header>
+
+        <div class="timer-section">
+            <h2>연습 시간</h2>
+            <div class="timer-display">05:00</div>
+            <div class="timer-controls">
+                <button id="start-timer">시작</button>
+                <button id="pause-timer">일시정지</button>
+                <button id="reset-timer">리셋</button>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <div class="game-description">
+                <h2>게임 설명</h2>
+                <div class="description-content">
+                    <p>3:3 팀전으로 진행되는 컬링 게임입니다.</p>
+                    <p>각 팀은 6개의 컬링 핀을 가지고 번갈아가며 던집니다.</p>
+                    <p>게임 시작 전 5분간 연습 시간이 주어집니다.</p>
+                </div>
+
+                <h2>점수 계산</h2>
+                <div class="score-rules">
+                    <div class="score-zone">
+                        <div class="zone center">5점</div>
+                        <div class="zone middle">3점</div>
+                        <div class="zone outer">1점</div>
+                    </div>
+                    <p>가장 가운데부터 밖으로 갈수록 5점, 3점, 1점을 획득합니다.</p>
+                </div>
+
+                <h2>보상</h2>
+                <div class="rewards">
+                    <p>승리 팀 개인: 3점</p>
+                    <p>패배 팀 개인: 1점</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <audio id="timer-alarm" src="alarm.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html> 
