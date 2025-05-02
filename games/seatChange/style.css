@@ -34,6 +34,7 @@ body {
 }
 
 .game-header {
+    position: relative;
     text-align: center;
     margin-bottom: 20px;
     padding: 10px;
@@ -430,4 +431,29 @@ button:hover {
     height: 100%;
     pointer-events: none;
     z-index: 999;
+}
+
+/* 홈 버튼 스타일 */
+.home-button {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    text-decoration: none;
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.home-button:hover {
+    background: var(--accent-color);
+    color: var(--background-color);
+    transform: translateY(-50%) scale(1.1);
 } 
