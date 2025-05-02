@@ -116,11 +116,14 @@ class TeamAssignmentGame {
         this.teams = {};
         this.selectedName = null;
         this.indicatorMessages = [
-            '각자의 머리카락 수집 중...',
-            '기름을 추출하는 중...',
-            '팀원들의 DNA 분석 중...',
-            '운명의 실을 엮는 중...',
-            '최적의 조합을 찾는 중...'
+            '성신이 몰래 마라탕을 숨기는 중...',
+            '주현이의 개구리를 슬쩍하는 중...',
+            '형우의 오리를 조용히 납치하는 중...',
+            '수민이의 기아가 또 지는 걸 지켜보는 중...',
+            '지원이의 빵떡이 엉덩이를 탐내는 중...',
+            '윤성이의 한화가 결국 18연패 달성하는 중...',
+            '우진이의 수면안대를 은밀하게 가져오는 중...',
+            '현주의 어깨가 리듬에 맞춰 들썩이는 중...',
         ];
         
         this.initializeGame();
@@ -202,11 +205,40 @@ class TeamAssignmentGame {
 
         // 팀 배정 버튼 이벤트
         assignTeamsBtn.addEventListener('click', () => {
-            if (this.leaders.length > 0) {
-                this.assignTeams();
-            } else {
-                alert('파티장을 선택해주세요!');
+            if (this.names.length < 2) {
+                alert('팀을 만들려면 최소 2명 이상의 참가자가 필요합니다!');
+                return;
             }
+            
+            const indicator = document.getElementById('team-assign-indicator');
+            const indicatorText = document.getElementById('indicator-text');
+            indicator.style.display = 'flex';
+
+            const messages = [
+                '형우의 오리를 조용히 납치하는 중...',
+                '성신이 몰래 마라탕을 숨기는 중...',
+                '주현이의 개구리를 슬쩍하는 중...',
+                '수민이의 기아가 또 지는 걸 지켜보는 중...',
+                '지원이의 빵떡이 엉덩이를 탐내는 중...',
+                '윤성이의 한화가 결국 18연패 달성하는 중...',
+                '우진이의 수면안대를 은밀하게 가져오는 중...',
+                '현주의 어깨가 리듬에 맞춰 들썩이는 중...',
+            ];
+
+            // 첫 번째 문구를 바로 표시
+            indicatorText.textContent = messages[0];
+            let currentMessage = 1;
+            
+            const interval = setInterval(() => {
+                indicatorText.textContent = messages[currentMessage];
+                currentMessage = (currentMessage + 1) % messages.length;
+            }, 500);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                indicator.style.display = 'none';
+                this.assignTeams();
+            }, 4000);
         });
 
         // 리셋 버튼 이벤트
@@ -272,69 +304,45 @@ class TeamAssignmentGame {
     }
 
     assignTeams() {
+        // 팀장이 선택되지 않은 경우 A, B팀으로 나누기
         if (this.leaders.length === 0) {
-            const indicator = document.getElementById('team-assign-indicator');
-            const indicatorText = document.getElementById('indicator-text');
-            indicator.style.display = 'flex';
-            indicatorText.textContent = '파티장을 먼저 선택해주세요!';
-            setTimeout(() => {
-                indicator.style.display = 'none';
-            }, 2000);
-            return;
-        }
-
-        const indicator = document.getElementById('team-assign-indicator');
-        const indicatorText = document.getElementById('indicator-text');
-        indicator.style.display = 'flex';
-        indicatorText.textContent = '각자의 머리카락 수집 중...';
-
-        const messages = [
-            '각자의 머리카락 수집 중...',
-            '기름을 추출하는 중...',
-            'DNA 분석 중...',
-            '운명의 실을 찾는 중...',
-            '팀을 배정하는 중...'
-        ];
-
-        let currentMessage = 1;
-        const interval = setInterval(() => {
-            indicatorText.textContent = messages[currentMessage];
-            currentMessage = (currentMessage + 1) % messages.length;
-        }, 600);
-
-        setTimeout(() => {
-            clearInterval(interval);
-            indicator.style.display = 'none';
-
-            // 팀 배정 로직
-            const nonLeaders = this.names.filter(name => !this.leaders.includes(name));
-            const teams = {};
-            this.leaders.forEach(leader => {
-                teams[leader] = [];
-            });
-
-            // 나머지 참가자들을 랜덤하게 팀에 배정
-            const shuffledNonLeaders = [...nonLeaders].sort(() => Math.random() - 0.5);
-            const leaderCount = this.leaders.length;
-            shuffledNonLeaders.forEach((name, index) => {
-                const leaderIndex = index % leaderCount;
-                teams[this.leaders[leaderIndex]].push(name);
-            });
-
-            this.teams = teams;
-            this.displayResults();
+            const shuffledNames = [...this.names].sort(() => Math.random() - 0.5);
+            const half = Math.ceil(shuffledNames.length / 2);
             
-            // 폭죽 효과 시작
-            this.fireworks.start();
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    this.fireworks.launch(
-                        Math.random() * window.innerWidth,
-                        window.innerHeight
-                    );
-                }, i * 200);
-            }
-        }, 3000);
+            this.teams = {
+                'A팀': shuffledNames.slice(0, half),
+                'B팀': shuffledNames.slice(half)
+            };
+        } else {
+            // 기존 로직: 팀장 중심으로 팀 배정
+            const nonLeaders = this.names.filter(name => !this.leaders.includes(name));
+            const shuffledNonLeaders = [...nonLeaders].sort(() => Math.random() - 0.5);
+            
+            this.teams = {};
+            this.leaders.forEach((leader, index) => {
+                this.teams[`${index + 1}팀`] = [leader];
+            });
+            
+            let teamIndex = 0;
+            shuffledNonLeaders.forEach(name => {
+                const teamKey = `${teamIndex + 1}팀`;
+                this.teams[teamKey].push(name);
+                teamIndex = (teamIndex + 1) % this.leaders.length;
+            });
+        }
+        
+        this.displayResults();
+        
+        // 폭죽 효과 시작
+        this.fireworks.start();
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                this.fireworks.launch(
+                    Math.random() * window.innerWidth,
+                    window.innerHeight
+                );
+            }, i * 200);
+        }
     }
 
     displayResults() {
