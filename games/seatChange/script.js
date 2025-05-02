@@ -273,13 +273,20 @@ class TeamAssignmentGame {
 
     assignTeams() {
         if (this.leaders.length === 0) {
-            alert('파티장을 먼저 선택해주세요!');
+            const indicator = document.getElementById('team-assign-indicator');
+            const indicatorText = document.getElementById('indicator-text');
+            indicator.style.display = 'flex';
+            indicatorText.textContent = '파티장을 먼저 선택해주세요!';
+            setTimeout(() => {
+                indicator.style.display = 'none';
+            }, 2000);
             return;
         }
 
         const indicator = document.getElementById('team-assign-indicator');
         const indicatorText = document.getElementById('indicator-text');
         indicator.style.display = 'flex';
+        indicatorText.textContent = '각자의 머리카락 수집 중...';
 
         const messages = [
             '각자의 머리카락 수집 중...',
@@ -289,7 +296,7 @@ class TeamAssignmentGame {
             '팀을 배정하는 중...'
         ];
 
-        let currentMessage = 0;
+        let currentMessage = 1;
         const interval = setInterval(() => {
             indicatorText.textContent = messages[currentMessage];
             currentMessage = (currentMessage + 1) % messages.length;
