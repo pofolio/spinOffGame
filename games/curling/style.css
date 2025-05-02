@@ -90,33 +90,18 @@ h2 {
 
 .zone {
     position: absolute;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--text-color);
-    font-size: 0.8rem;
+    color: black;
+    font-size: 1.2rem;
 }
 
 .zone.center {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    z-index: 3;
-}
-
-.zone.middle {
     width: 120px;
     height: 120px;
-    background: var(--secondary-color);
-    z-index: 2;
-}
-
-.zone.outer {
-    width: 200px;
-    height: 200px;
     background: var(--accent-color);
-    z-index: 1;
+    z-index: 3;
 }
 
 .rewards {
@@ -249,7 +234,7 @@ h2 {
     }
     
     .zone {
-        font-size: 0.7rem;
+        font-size: 1.2rem;
     }
     
     .score-zone {
@@ -258,18 +243,8 @@ h2 {
     }
     
     .zone.center {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .zone.middle {
-        width: 90px;
-        height: 90px;
-    }
-    
-    .zone.outer {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
     }
     
     .home-button {
